@@ -1,3 +1,5 @@
+import json
+
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
@@ -45,6 +47,27 @@ def run_query_2():
         # Fetch all results
         rows = result.fetchall()
         return rows
+    finally:
+        # Close the session
+        session.close()
+
+
+def run_query_3():
+    # Create a session
+    session = Session()
+
+    try:
+        query_string = "SELECT * FROM users"
+        result = session.execute(text(query_string))
+        # Fetch all results
+        rows = result.fetchall()
+        columns = result.keys()
+        data = [dict(zip(columns, row)) for row in rows]
+
+        # Convert to JSON string
+        json_data = json.dumps(data, default=str)  # default=str to handle datetime and other non-serializable types
+
+        return json_data
     finally:
         # Close the session
         session.close()

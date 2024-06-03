@@ -1,4 +1,6 @@
-from database import run_query_1, run_query_2, run_query_3, multiple_create, upsert_user
+import json
+
+from database import run_query_1, run_query_2, run_query_3, multiple_create, upsert_user, add_json
 
 
 def main():
@@ -23,10 +25,23 @@ def main():
     # except Exception as e:
     #     print(e)
 
-try:
-    upsert_user(4, 'John Do', 'john.do@example.com')
-except Exception as e:
-    print(e)
+    try:
+        upsert_user(4, 'John Do', 'john.do@example.com')
+    except Exception as e:
+        print(e)
+
+    try:
+        json_data = {
+            "key1": "value1",
+            "key2": "value2",
+            "key3": [1, 2, 3]
+        }
+        # Convert JSON data to a string
+        json_string = json.dumps(json_data)
+        add_json(14, 'KK', 'kk.do@example.com', json_string)
+
+    except Exception as e:
+        print(e)
 
 
 if __name__ == '__main__':

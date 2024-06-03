@@ -88,3 +88,15 @@ def upsert_user(user_id, name, email):
             session.commit()
         except Exception as e:
             raise RuntimeError(f"Upsert operation failed: {str(e)}")
+
+
+def add_json(id, name, email, json_string):
+    with Session(engine) as session:
+        try:
+            query_string = "INSERT INTO  users (id, name, email, detail) values (:id, :name, :email, :detail)"
+            session.execute(text(query_string), {'id': id, 'name': name, 'email': email,
+                                                 'detail': json_string})
+            session.commit()
+            return "Transaction committed successfully"
+        except Exception as e:
+            raise RuntimeError(f"Transaction failed: {str(e)}")

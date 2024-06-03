@@ -34,3 +34,9 @@ result = connection.execute(t, {"user_id": 12})
 ...     result = session.execute(stmt, {"y": 6})
 ...     for row in result:
 ...         print(f"x: {row.x}  y: {row.y}")
+
+## Connection pool in sqlalchemy
+The Engine returned by the create_engine() function in most cases has a QueuePool integrated, pre-configured with 
+reasonable pooling defaults. If you’re reading this section only to learn how to enable pooling - congratulations!
+You’re already done.
+https://docs.sqlalchemy.org/en/20/core/pooling.html

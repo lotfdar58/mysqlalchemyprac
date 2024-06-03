@@ -18,14 +18,13 @@ def main():
     # Print the results
     print(rows)
 
-
-# try:
-#     multiple_create()
-# except Exception as e:
-#     print(e)
+    # try:
+    #     multiple_create()
+    # except Exception as e:
+    #     print(e)
 
 try:
-    upsert_user(4, 'John Doe', 'john.doe@example.com')
+    upsert_user(4, 'John Do', 'john.do@example.com')
 except Exception as e:
     print(e)
 
